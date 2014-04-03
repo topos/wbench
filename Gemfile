@@ -1,0 +1,5 @@
+source 'http://rubygems.org'
+gem 'sys-proctable', '~> 0.9.4'
+gem 'smart_colored', '~> 1.1'
+gem 'wbench', '~> 0.4.0'
+gem 'rake', '~> 10.2.2'
