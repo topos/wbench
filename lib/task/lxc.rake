@@ -132,9 +132,10 @@ namespace :lxc do
            else
              [arg.name]
            end
+    LIB_DIR = File.expand_path("#{File.dirname(__FILE__)}/..")
     lxcs.each do |name|
       puts "lxc=#{name.red}"
-      sh "sudo cp #{TASK_DIR}/bashrc -p /var/lib/lxc/#{name}/rootfs/home/ubuntu/.bashrc"
+      sh "sudo cp #{LIB_DIR}/bashrc -p /var/lib/lxc/#{name}/rootfs/home/ubuntu/.bashrc"
     end
   end
 
