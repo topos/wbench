@@ -3,12 +3,12 @@ namespace :wbench do
   include Sys
 
   desc "run wbench"
-  task :run, [:url, :opts] => [:xvfb] do |t,arg| 
-    arg.with_defaults(url:'http://gooogle.com', opts:'')
+  task :run, [:url, :ntimes, :opts] => [:xvfb] do |t,arg| 
+    arg.with_defaults(url:'http://gooogle.com', ntimes: 1, opts:'')
     ENV['PATH'] = "/usr/lib/chromium-browser:#{ENV['PATH']}"
     ENV['LD_LIBRARY_PATH'] = '/usr/lib/chromium-browser/libs'
     ENV['DISPLAY'] = ':99'
-    sh "wbench #{arg.url}"
+    sh "wbench -l#{arg.ntimes} #{arg.url}"
   end
 
   desc "start xvfb"
