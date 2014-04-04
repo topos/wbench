@@ -1,10 +1,14 @@
 help:; @echo "make install"
 
-install: pkgs fonts emacs compression gems
+install: pkgs fonts emacs gems
 
 PKGS = ruby ruby-dev rake ksh fvwm git diffuse source-highlight flex bison g++-4.8
 pkgs: aptitude
 	for p in ${PKGS}; do sudo aptitude install -y $$p; done
+	sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 20
+	sudo update-alternatives --config gcc
+	sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 20
+	sudo update-alternatives --config g++
 
 aptitude:; sudo apt-get install -y aptitude
 
@@ -26,9 +30,6 @@ full-upgrade:; sudo aptitude full-upgrade -y
 
 aptitude:; sudo apt-get install -y aptitude
 emacs:; sudo aptitude install -y emacs24 emacs24-el emacs-goodies-el emacs-goodies-extra-el
-
-google-chrome: libs
-	sudo dpkg --install google-chrome-stable_current_amd64.deb
 
 java:;	sudo add-apt-repository ppa:webupd8team/java
 	sudo aptitude update -y
@@ -54,8 +55,6 @@ media-ppa:; sudo -E wget --output-document=/etc/apt/sources.list.d/medibuntu.lis
 # sudo apt-get update
 # sudo apt-get install nvidia-current
 
-
-compression:; sudo apt-get install p7zip-rar p7zip-full unace unrar zip unzip sharutils rar uudeview mpack arj cabextract file-roller
 
 dev: tools
 	for i in $$(aptitude search -F '%p' x11|grep dev|grep -v :i386|grep -v libhgc); do sudo aptitude install -y $$i; done
