@@ -8,6 +8,7 @@ namespace :wbench do
     ENV['PATH'] = "/usr/lib/chromium-browser:#{ENV['PATH']}"
     ENV['LD_LIBRARY_PATH'] = '/usr/lib/chromium-browser/libs'
     ENV['DISPLAY'] = ':99'
+    sh "ping -c 1 www.shutterstock.com"
     sh "wbench -l#{arg.ntimes} -c #{arg.url}"
   end
 
