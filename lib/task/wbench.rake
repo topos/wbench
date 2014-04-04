@@ -8,7 +8,7 @@ namespace :wbench do
     ENV['PATH'] = "/usr/lib/chromium-browser:#{ENV['PATH']}"
     ENV['LD_LIBRARY_PATH'] = '/usr/lib/chromium-browser/libs'
     ENV['DISPLAY'] = ':99'
-    sh "wbench -l#{arg.ntimes} #{arg.url}"
+    sh "wbench -l#{arg.ntimes} -c #{arg.url}"
   end
 
   desc "start xvfb"
